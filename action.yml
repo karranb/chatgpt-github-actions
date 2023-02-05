@@ -1,5 +1,9 @@
 # action.yml
 name: 'Code Review with ChatGPT'
+permissions:
+  contents: read
+  pull-requests: write
+
 description: 'Automating code review using ChatGPT with Github Actions integration on PRs for code explanations.'
 inputs:
   openai_api_key:  # id of input
