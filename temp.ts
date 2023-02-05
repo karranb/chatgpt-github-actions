@@ -51,7 +51,7 @@ class Caker extends Model {
  serialize() {
    const addSuffix = (path: string, suffix: string) => {
      const splittedPath = path.split('.')
-     return splittedPath.slice(0, -1).join('.')  suffix  '.'  splittedPath[splittedPath.length - 1]
+     return splittedPath.slice(0, -1).join('.') + suffix + '.' + splittedPath[splittedPath.length - 1]
    }
    return {
      id: this.id,
