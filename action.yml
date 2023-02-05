@@ -26,6 +26,10 @@ inputs:
     description: 'The maximum number of tokens to generate in the completion.'
     required: false
     default: '2048'
+  ignore_list:  # id of input
+    description: 'The list of the regex of the files that should be ignored'
+    required: false
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -36,3 +40,4 @@ runs:
     - ${{ inputs.openai_engine }}
     - ${{ inputs.openai_temperature }}
     - ${{ inputs.openai_max_tokens }}
+    - ${{ inputs.ignore_list }}
