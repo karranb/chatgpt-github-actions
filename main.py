@@ -63,7 +63,9 @@ for file in comparison.files:
     Patch of the Pull Request to review:
     {file.patch}
     As a code reviewer, your task is:
-    - If there are any bugs or improvements, highlight them
+    - Give a brief explanation of the code
+    - If there are any bugs highlight them
+    - If there are multiple issues, enumerate them
     - Do not highlight minor issues, nitpicks and the good parts of the code.
     """),
             temperature=float(args.openai_temperature),
