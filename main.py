@@ -56,14 +56,14 @@ for file in comparison.files:
         # Send openai request
         response = openai.Completion.create(
             engine=args.openai_engine,
-            prompt=(f""""
+            prompt=(f"""
     Act as a code reviewer of a Pull Request, providing feedback on the code changes below.
     You are provided with the Pull Request changes in a patch format.
     Each patch entry has the commit message in the Subject line followed by the code changes (diffs) in a unidiff format.
     Patch of the Pull Request to review:
     {file.patch}
     As a code reviewer, your task is:
-    - If there are any bugs or big improvements, highlight them.
+    - If there are any bugs or improvements, highlight them
     - Do not highlight minor issues, nitpicks and the good parts of the code.
     """),
             temperature=float(args.openai_temperature),
