@@ -46,6 +46,14 @@ def check_file_should_be_ignored(file):
             return True
     return False
 
+
+print("Deleting old comments")
+comments = pull_request.get_review_comments()
+for comment in comments:
+    if comment.body[:15] == 'ChatGPT Review:':
+        comment.delete()
+
+print("Creating new comments")
 for file in comparison.files:
     # Check file has any adition
     if not file.additions:
@@ -64,15 +72,14 @@ for file in comparison.files:
     {file.patch}
     As a code reviewer, your task is:
     - Give a brief explanation of the code
-    - If there are any bugs highlight them
-    - If there are multiple issues, enumerate them
+    - If there are any bugs enumerate them
     - Do not highlight minor issues, nitpicks and the good parts of the code.
     """),
             temperature=float(args.openai_temperature),
             max_tokens=int(args.openai_max_tokens)
         )
         # Create a review comment in the file
-        pull_request.create_review_comment(response['choices'][0]['text'], commit, file.filename, file.changes)
+        pull_request.create_review_comment(f"ChatGPT Review:\n{response['choices'][0]['text']}", commit, file.filename, file.changes)
     except Exception as e:
         print('Error:', str(e))
 
