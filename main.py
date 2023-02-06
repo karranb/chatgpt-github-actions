@@ -72,14 +72,14 @@ for file in comparison.files:
     {file.patch}
     As a code reviewer, your task is:
     - Give a brief explanation of the code
-    - If there are any bugs enumerate them
+    - If there are any bugs highlight and enumerate them
     - Do not highlight minor issues, nitpicks and the good parts of the code.
     """),
             temperature=float(args.openai_temperature),
             max_tokens=int(args.openai_max_tokens)
         )
         # Create a review comment in the file
-        pull_request.create_review_comment(f"ChatGPT Review:\n{response['choices'][0]['text']}", commit, file.filename, file.changes)
+        pull_request.create_review_comment(f"ChatGPT Review:<br/>{response['choices'][0]['text']}", commit, file.filename, file.changes)
     except Exception as e:
         print('Error:', str(e))
 
